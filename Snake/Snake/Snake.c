@@ -9,7 +9,6 @@ void SetPos(int x, int y)
 	pos.Y = y;
 	SetConsoleCursorPosition(handle, pos);
 }
-
 //欢迎界面
 void WelcomeToGame()
 {
