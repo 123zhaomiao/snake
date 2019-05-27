@@ -1,56 +1,57 @@
 #include"Snake.h"
-//ÉèÖÃ¹â±êÎ»ÖÃ
+//è®¾ç½®å…‰æ ‡ä½ç½®
 void SetPos(int x, int y)
 {
-	//Êä³ö
+	//è¾“å‡º
 	HANDLE  handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD   pos = { 0 };
 	pos.X = x;
 	pos.Y = y;
 	SetConsoleCursorPosition(handle, pos);
 }
-//»¶Ó­½çÃæ
+
+//æ¬¢è¿ç•Œé¢
 void WelcomeToGame()
 {
-	//ÉèÖÃ¹â±êÎ»ÖÃ
+	//è®¾ç½®å…‰æ ‡ä½ç½®
 	SetPos(30, 10);
-	printf("»¶Ó­À´µ½Ì°³ÔÉßĞ¡ÓÎÏ·£¡£¡£¡\n");
+	printf("æ¬¢è¿æ¥åˆ°è´ªåƒè›‡å°æ¸¸æˆï¼ï¼ï¼\n");
 	SetPos(0, 21);
 	system("pause");
 	system("cls");
 	SetPos(30, 10);
-	printf("ÓÃ¡ü£¬¡ı£¬¡û£¬¡ú¿ØÖÆÉßµÄÒÆ¶¯£¬F1¼ÓËÙ£¬F2¼õËÙ£¡\n");
+	printf("ç”¨â†‘ï¼Œâ†“ï¼Œâ†ï¼Œâ†’æ§åˆ¶è›‡çš„ç§»åŠ¨ï¼ŒF1åŠ é€Ÿï¼ŒF2å‡é€Ÿï¼\n");
 	SetPos(30, 11);
-	printf("¼ÓËÙ»ñµÃ·ÖÊı¸ü¶à£¡\n");
+	printf("åŠ é€Ÿè·å¾—åˆ†æ•°æ›´å¤šï¼\n");
 	SetPos(0, 21);
 	system("pause");
 	system("cls");
 }
-//´´½¨µØÍ¼
+//åˆ›å»ºåœ°å›¾
 void CreatMap()
 {
 	SetPos(30, 0);
-	printf("Ì°³ÔÉßĞ¡ÓÎÏ·");
+	printf("è´ªåƒè›‡å°æ¸¸æˆ");
 	int i = 0;
-	//ÉÏ
+	//ä¸Š
 	for (i = 0; i <= 78; i += 2)
 	{
 		SetPos(i, 1);
 		printf(WALL);
 	}
-	//ÏÂ
+	//ä¸‹
 	for (i = 0; i <= 78; i += 2)
 	{
 		SetPos(i, 20);
 		printf(WALL);
 	}
-	//×ó
+	//å·¦
 	for (i = 2; i <= 19; i += 1)
 	{
 		SetPos(0, i);
 		printf(WALL);
 	}
-	//ÓÒ
+	//å³
 	for (i = 2; i <= 19; i += 1)
 	{
 		SetPos(78, i);
@@ -71,7 +72,7 @@ PSnakeNode BuyNode()
 	newnode->next = NULL;
 	return newnode;
 }
-//³õÊ¼»¯Éß
+//åˆå§‹åŒ–è›‡
 void InitSnake(PSnake ps)
 {
 	PSnakeNode first = BuyNode();
@@ -101,7 +102,7 @@ void InitSnake(PSnake ps)
 	ps->_TotalScore = 0;
 }
 
-//³õÊ¼»¯Ê³Îï
+//åˆå§‹åŒ–é£Ÿç‰©
 void CreateFood(PSnake ps)
 {
 	PSnakeNode food = BuyNode();
@@ -125,7 +126,7 @@ void CreateFood(PSnake ps)
 	ps->_Food = food;
 }
 
-//ÔİÍ£
+//æš‚åœ
 void Pause()
 {
 	while (1)
@@ -137,7 +138,7 @@ void Pause()
 		}
 	}
 }
-//ÏÂÒ»¸ö½áµãÊÇ·ñÊÇÊ³Îï
+//ä¸‹ä¸€ä¸ªç»“ç‚¹æ˜¯å¦æ˜¯é£Ÿç‰©
 int NextHasFood(PSnakeNode food, PSnakeNode newnode)
 {
 	if (food->_x == newnode->_x && food->_y == newnode->_y)
@@ -146,7 +147,7 @@ int NextHasFood(PSnakeNode food, PSnakeNode newnode)
 	}
 	return 0;
 }
-//³ÔÊ³Îï
+//åƒé£Ÿç‰©
 void  EatFood(PSnake ps)
 {
 	PSnakeNode cur = ps->_PSnake;
@@ -159,7 +160,7 @@ void  EatFood(PSnake ps)
 	}
 	CreateFood(ps);
 }
-//²»³Ô
+//ä¸åƒ
 void  NoFood(PSnake ps)
 {
 	PSnakeNode cur = ps->_PSnake;
@@ -176,7 +177,7 @@ void  NoFood(PSnake ps)
 	free(cur->next);
 	cur->next = NULL;
 }
-//ÉßµÄÒÆ¶¯
+//è›‡çš„ç§»åŠ¨
 void SnakeMove(PSnake ps)
 {
 	PSnakeNode newnode = BuyNode();
@@ -245,29 +246,29 @@ void SnakeMove(PSnake ps)
 	}break;
 	}
 }
-//°ïÖúÊÖ²á
+//å¸®åŠ©æ‰‹å†Œ
 void PrintHelp(PSnake ps)
 {
 	SetPos(82, 10);
-	printf("×Ü·Ö£º%d\n", ps->_TotalScore);
+	printf("æ€»åˆ†ï¼š%d\n", ps->_TotalScore);
 	SetPos(82, 11);
-	printf("Ê³ÎïµÃ·Ö£º%d \n", ps->_AddScore);
+	printf("é£Ÿç‰©å¾—åˆ†ï¼š%d \n", ps->_AddScore);
 	SetPos(82, 12);
-	printf("ÓÃ¡ü£¬¡ı£¬¡û£¬¡ú¿ØÖÆÉßµÄÒÆ¶¯!\n");
+	printf("ç”¨â†‘ï¼Œâ†“ï¼Œâ†ï¼Œâ†’æ§åˆ¶è›‡çš„ç§»åŠ¨!\n");
 	SetPos(82, 13);
-	printf("EscÍË³ö£¬F1¼ÓËÙ£¬F2¼õËÙ!\n");
+	printf("Escé€€å‡ºï¼ŒF1åŠ é€Ÿï¼ŒF2å‡é€Ÿ!\n");
 	SetPos(82, 14);
-	printf("¼ÓËÙ»ñµÃ·ÖÊı¸ü¶à£¡\n");
+	printf("åŠ é€Ÿè·å¾—åˆ†æ•°æ›´å¤šï¼\n");
 }
 void KillByWall(PSnake ps)
 {
 	if (ps->_PSnake->_x == 0 || ps->_PSnake->_x == 78 || ps->_PSnake->_y == 1 || ps->_PSnake->_y == 20)
 	{
 		SetPos(30, 10);
-		printf("×²Ç½£¡ÓÎÏ·½áÊø\n");
+		printf("æ’å¢™ï¼æ¸¸æˆç»“æŸ\n");
 		printf("\a");
 		SetPos(30, 11);
-		printf("Ò»¹²µÃ·Ö£º%d\n",ps->_TotalScore);
+		printf("ä¸€å…±å¾—åˆ†ï¼š%d\n",ps->_TotalScore);
 		ps->_status = KILL_BY_WALL;
 	}
 }
@@ -279,16 +280,16 @@ void KillBySelf(PSnake ps)
 		if (cur->_x == ps->_PSnake->_x&&cur->_y == ps->_PSnake->_y)
 		{
 			SetPos(30, 10);
-			printf("×Ô¾¡¶øÍö£¡ÓÎÏ·½áÊø\n");
+			printf("è‡ªå°½è€Œäº¡ï¼æ¸¸æˆç»“æŸ\n");
 			printf("\a");
 			SetPos(30, 11);
-			printf("Ò»¹²µÃ·Ö£º%d\n", ps->_TotalScore);
+			printf("ä¸€å…±å¾—åˆ†ï¼š%d\n", ps->_TotalScore);
 			ps->_status = KILL_BY_SELF;
 		}
 		cur = cur->next;
 	}
 }
-//ÓÎÏ·ÒÆ¶¯
+//æ¸¸æˆç§»åŠ¨
 void GameMove(PSnake _pSnake)
 {
 	PSnake ps=_pSnake;
@@ -297,32 +298,32 @@ void GameMove(PSnake _pSnake)
          PrintHelp(ps);
 		if (GetAsyncKeyState(VK_UP) && ps->_dir != down)
 		{
-			//×´Ì¬¸ÄÎªÉÏ
+			//çŠ¶æ€æ”¹ä¸ºä¸Š
 			ps->_dir = up;
 		}
 		else if(GetAsyncKeyState(VK_DOWN) && ps->_dir != up)
 		{
-			//×´Ì¬¸ÄÎªÏÂ
+			//çŠ¶æ€æ”¹ä¸ºä¸‹
 			ps->_dir = down;
 		}
 		else if(GetAsyncKeyState(VK_LEFT) && ps->_dir != right)
 		{
-			//×´Ì¬¸ÄÎª×ó
+			//çŠ¶æ€æ”¹ä¸ºå·¦
 			ps->_dir = left;
 		}
 		else if(GetAsyncKeyState(VK_RIGHT) && ps->_dir != left)
 		{
-			//×´Ì¬¸ÄÎªÓÒ
+			//çŠ¶æ€æ”¹ä¸ºå³
 			ps->_dir = right;
 		}
 		else if(GetAsyncKeyState(VK_SPACE))
 		{
-			//ÔİÍ£
+			//æš‚åœ
 			Pause();
 		}
 		else if(GetAsyncKeyState(VK_F1))
 		{
-			//¼ÓËÙ
+			//åŠ é€Ÿ
 			if (ps->_SleepTime >= 100 && ps->_AddScore < 20)
 			{
 				ps->_SleepTime -= 20;
@@ -331,7 +332,7 @@ void GameMove(PSnake _pSnake)
 		}
 		else if (GetAsyncKeyState(VK_F2))
 		{
-			//¼õËÙ
+			//å‡é€Ÿ
 			if (ps->_SleepTime <= 500 && ps->_AddScore > 2)
 			{
 				ps->_SleepTime += 20;
@@ -340,19 +341,19 @@ void GameMove(PSnake _pSnake)
 		}
 		else if (GetAsyncKeyState(VK_ESCAPE))
 		{
-			//Õı³£ÍË³ö
+			//æ­£å¸¸é€€å‡º
 			ps->_status = NORMAL_END;
 			break;
 		}
 		Sleep(ps->_SleepTime);
-		//ÉßµÄÒÆ¶¯
+		//è›‡çš„ç§»åŠ¨
 		SnakeMove(ps);
 		KillByWall(ps);
 		KillBySelf(ps);
 	} while (ps->_status == OK);
 }
 
-//Ïú»ÙÉß
+//é”€æ¯è›‡
 void SnakeDestory(PSnake ps)
 {
 	PSnakeNode Del = NULL;
