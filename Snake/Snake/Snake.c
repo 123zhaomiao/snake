@@ -27,6 +27,7 @@ void WelcomeToGame()
 	system("pause");
 	system("cls");
 }
+
 //创建地图
 void CreatMap()
 {
