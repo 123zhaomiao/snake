@@ -7,67 +7,66 @@
 #include<malloc.h>
 #include<time.h>
 
-#define WALL "¡ö"
-#define SNAKE "¡ñ"
-#define FOOD "¡ï"
+#define WALL "â– "
+#define SNAKE "â—"
+#define FOOD "â˜…"
 #define ROW 20
 #define COL 15
 
-//ÉßÉí
+//è›‡èº«
 typedef struct SnakeNode
 {
-	int _x;    //ºá×ø±ê
-	int _y;    //×İ×ø±ê
-	struct SnakeNode *next;  //Ö¸ÕëÓò
+	int _x;    //æ¨ªåæ ‡
+	int _y;    //çºµåæ ‡
+	struct SnakeNode *next;  //æŒ‡é’ˆåŸŸ
 }SnakeNode, *PSnakeNode;
 
-//ÉßµÄ×´Ì¬
+//è›‡çš„çŠ¶æ€
 enum GameStatus
 {
-	OK,               //Õı³£
-	NORMAL_END,      //Õı³£ÍË³öh
-	KILL_BY_WALL,    //×²Ç½
-	KILL_BY_SELF      //×Ô¼ºÅöµ½×Ô¼º
+	OK,               //æ­£å¸¸
+	NORMAL_END,      //æ­£å¸¸é€€å‡ºh
+	KILL_BY_WALL,    //æ’å¢™
+	KILL_BY_SELF      //è‡ªå·±ç¢°åˆ°è‡ªå·±
 };
 
-
-//ÉßµÄ·½Ïò
+//è›‡çš„æ–¹å‘
 enum Direction
 {
-	up,       //ÉÏ
-	down,     //ÏÂ
-	left,     //×ó
-	right     //ÓÒ
+	up,       //ä¸Š
+	down,     //ä¸‹
+	left,     //å·¦
+	right     //å³
 };
 
-//¹ØÓÚÉß
+//å…³äºè›‡
 typedef struct Snake
 {
-	PSnakeNode   _PSnake;      //Ö¸ÏòÉßµÄÖ¸Õë
-	PSnakeNode   _Food;        //Ö¸ÏòÉßÊ³ÎïµÄÖ¸Õë
-	int _TotalScore;                //×Ü·Ö
-	int _AddScore;             //¼Ó·Ö
-	int _SleepTime;            //Ë¯ÃßÊ±¼ä
-	enum GameStatus _status;    //×´Ì¬
-	enum Direction  _dir;     //ÉßµÄ·½Ïò
+	PSnakeNode   _PSnake;      //æŒ‡å‘è›‡çš„æŒ‡é’ˆ
+	PSnakeNode   _Food;        //æŒ‡å‘è›‡é£Ÿç‰©çš„æŒ‡é’ˆ
+	int _TotalScore;                //æ€»åˆ†
+	int _AddScore;             //åŠ åˆ†
+	int _SleepTime;            //ç¡çœ æ—¶é—´
+	enum GameStatus _status;    //çŠ¶æ€
+	enum Direction  _dir;     //è›‡çš„æ–¹å‘
 }Snake, *PSnake;
 
 
 
-//»¶Ó­½çÃæ
+//æ¬¢è¿ç•Œé¢
 void WelcomeToGame();
-//´´½¨µØÍ¼
+//åˆ›å»ºåœ°å›¾
 void CreatMap();
-//³õÊ¼»¯Éß
+//åˆå§‹åŒ–è›‡
 void InitSnake(PSnake ps);
-//³õÊ¼»¯Ê³Îï
+//åˆå§‹åŒ–é£Ÿç‰©
 void CreateFood(PSnake _pSnake);
-//¹â±êÎ»ÖÃ
+//å…‰æ ‡ä½ç½®
 void SetPos(int x,int y);
-//Ïú»ÙÉß
+//é”€æ¯è›‡
 void SnakeDestory(PSnake _pSnake);
 
-//ÓÎÏ·ÒÆ¶¯
+//æ¸¸æˆç§»åŠ¨
 void GameMove(PSnake _pSnake);
 
 
