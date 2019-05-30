@@ -175,6 +175,7 @@ void  NoFood(PSnake ps)
 	SetPos(cur->next->_x,cur->next->_y);
 	printf(" ");
 	free(cur->next);
+	
 	cur->next = NULL;
 }
 //蛇的移动
